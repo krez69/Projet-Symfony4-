@@ -13,6 +13,7 @@
     {% else %}
         Aucune série trouvée.
     {% endfor %}
+
     <a href="{{ path('app_index') }} ">Retour à l'acceuil</a><br>
     <a href="{{ path('show', { 'slug': "walking-dead" }) }}">
         Testing show() method from WildController with a real program s slug.

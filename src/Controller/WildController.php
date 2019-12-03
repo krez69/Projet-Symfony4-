@@ -7,7 +7,10 @@ use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Form\CategoryType;
+use App\Form\ProgramSearchType;
 use App\Repository\ProgramRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,7 +30,11 @@ class WildController extends AbstractController
         if (!$programs) {
             throw $this->createNotFoundException("No program found in program's table.");
         }
-        return $this->render('wild/index.html.twig', ['website' => 'Wild Series', 'programs' => $programs]);
+
+        return $this->render('wild/index.html.twig', [
+            'programs' => $programs
+        ]);
+
     }
 
     /**
@@ -146,8 +153,6 @@ class WildController extends AbstractController
             ->findAll();
 
 
-
-
         return $this->render('wild/season.html.twig', [
             'season' => $season,
             'episodes' =>$episodes
@@ -164,8 +169,6 @@ class WildController extends AbstractController
     {
         $season = $episode->getSeason();
         $program = $season->getProgram();
-
-
 
         return $this->render('wild/episode.html.twig',[
             'episode' => $episode,

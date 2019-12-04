@@ -77,7 +77,7 @@ class Season
         return $this->program;
     }
 
-    public function setProgram(string $program): self
+    public function setProgram(Program $program): self
     {
         $this->program = $program;
 

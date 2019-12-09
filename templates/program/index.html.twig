@@ -7,13 +7,13 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Summary</th>
-                <th>Poster</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Poster</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for program in programs %}
@@ -21,7 +21,7 @@
                 <td>{{ program.id }}</td>
                 <td>{{ program.title }}</td>
                 <td>{{ program.summary }}</td>
-                <td>{{ program.poster }}</td>
+                <td><img src="{{ program.poster }}" alt="image"></td>
                 <td>
                     <a href="{{ path('program_show', {'id': program.id}) }}">show</a>
                     <a href="{{ path('program_edit', {'id': program.id}) }}">edit</a>

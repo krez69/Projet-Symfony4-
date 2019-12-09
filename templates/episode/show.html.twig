@@ -7,26 +7,26 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ episode.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ episode.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ episode.number }}</td>
-            </tr>
-            <tr>
-                <th>Synopsis</th>
-                <td>{{ episode.synopsis }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ episode.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ episode.title }}</td>
+        </tr>
+        <tr>
+            <th>Number</th>
+            <td>{{ episode.number }}</td>
+        </tr>
+        <tr>
+            <th>Synopsis</th>
+            <td>{{ episode.synopsis }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('episode_index') }}">back to list</a>
+    <a href="{{ path('episode_index') }}">back to list</a><br>
 
     <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
 

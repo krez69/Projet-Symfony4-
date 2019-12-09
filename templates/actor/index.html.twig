@@ -9,7 +9,8 @@
 
         <ul>
             {% for program in programs %}
-                <li><a href="{{path ('program_show', {'id' : program.id}) }}" style="color : lightblue">{{ program.title }}</a></li><br>
+                <li><a href="{{ path ('program_show', {'id' : program.id}) }}"
+                       style="color : lightblue">{{ program.title }}</a></li><br>
             {% endfor %}
         </ul>
 

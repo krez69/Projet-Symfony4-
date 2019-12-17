@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un Programe{% endblock %}
+{% block title %}Modifier un programme{% endblock %}
 
 {% block body %}
-    <div class="container col-4 mt-4">
-    <h1>Modifier un Programe</h1>
 
-    {{ include('program/_form.html.twig', {'button_label': 'Update'}) }}
+    <h1>Modifier un programme</h1>
 
-    <a href="{{ path('program_index') }}">back to list</a>
-
+    {{ include('program/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     {{ include('program/_delete_form.html.twig') }}
-    </div>
+
+    <a href="{{ path('program_index') }}" style="color: steelblue">Retour à la liste</a>
+
 {% endblock %}

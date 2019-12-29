@@ -9,10 +9,11 @@
 
         <ul>
             {% for program in programs %}
-                <li><a href="{{ path ('program_show', {'id' : program.id}) }}"
+                <li><a href="{{ path ('program_show', {'slug' : program.slug}) }}"
                        style="color : lightblue">{{ program.title }}</a></li><br>
             {% endfor %}
         </ul>
+        <a href="{{ path('program_index') }}" style="color: steelblue">Retour à la liste</a>
 
     </div>
 {% endblock %}

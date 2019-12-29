@@ -4,12 +4,13 @@
 
 {% block body %}
     <h1>Program index</h1>
-
-    <table class="table">
-        <thead>
+    <div class="media">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
         <tr>
             <th>Id</th>
             <th>Title</th>
+            <th>Slug</th>
             <th>Summary</th>
             <th>Poster</th>
             <th>actions</th>
@@ -20,11 +21,12 @@
             <tr>
                 <td>{{ program.id }}</td>
                 <td>{{ program.title }}</td>
+                <td>{{ program.slug }}</td>
                 <td>{{ program.summary }}</td>
                 <td><img src="{{ program.poster }}" alt="image"></td>
                 <td>
-                    <a href="{{ path('program_show', {'id': program.id}) }}">show</a>
-                    <a href="{{ path('program_edit', {'id': program.id}) }}">edit</a>
+                    <a class="btn btn-primary text-white" href="{{ path('program_show', {'slug': program.slug}) }}">show</a>
+                    <a class="btn btn-danger text-white mt-2" href="{{ path('program_edit', {'slug': program.slug}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +36,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('program_new') }}">Create new</a>
+    </div>
+    <a class="btn btn-primary text-white" href="{{ path('program_new') }}">Create new</a>
 {% endblock %}

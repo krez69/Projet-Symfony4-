@@ -178,7 +178,7 @@ class WildController extends AbstractController
         ]);
     }
     /**
-     * @Route("actor/{id}", name="show_actor")
+     * @Route("actor/{slug}", name="show_actor")
      * @param Actor $actor
      * @return Response
      */

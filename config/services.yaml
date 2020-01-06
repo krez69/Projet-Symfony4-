@@ -4,6 +4,11 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+   mailer_from: '%env(string:GMAIL_USERNAME)%'
+   mailer_to: '%env(string:GMAIL_USERNAME)%'
+   gmail_from: '%env(string:GMAIL_USERNAME)%'
+   gmail_password: '%env(string:GMAIL_PASSWORD)%'
+
 
 services:
     # default configuration for services in *this* file

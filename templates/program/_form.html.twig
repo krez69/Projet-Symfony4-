@@ -1,0 +1,8 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(form) }}
+<div class="container col-4 mt-4">
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">{{ button_label|default('Sauvegarder') }}</button>
+</div>
+{{ form_end(form) }}

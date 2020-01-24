@@ -3,8 +3,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Actor;
 use App\Entity\Category;
+use App\Entity\Episode;
 use App\Entity\Program;
+use App\Entity\Season;
+use App\Form\CategoryType;
+use App\Form\ProgramSearchType;
+use App\Repository\ProgramRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +31,11 @@ class WildController extends AbstractController
         if (!$programs) {
             throw $this->createNotFoundException("No program found in program's table.");
         }
-        return $this->render('wild/index.html.twig', ['website' => 'Wild Series', 'programs' => $programs]);
+
+        return $this->render('wild/index.html.twig', [
+            'programs' => $programs
+        ]);
+
     }
 
     /**
@@ -45,6 +56,7 @@ class WildController extends AbstractController
             ->getRepository(Program::class)
             ->findOneBy(['title' => mb_strtolower($slug)]);
 
+
         if (!$program) {
             throw $this->createNotFoundException(
                 "No program with '.$slug.' title, found in program's table."
@@ -57,7 +69,6 @@ class WildController extends AbstractController
         ]);
     }
 
-    /*FindBy() : récupérer plusieurs objets avec des filtres */
     /**
      * @Route("wild/category/{categoryName<^[a-z0-9-]+$>}", name="show_category").
      * @param string $categoryName
@@ -67,7 +78,7 @@ class WildController extends AbstractController
     {
         if (!$categoryName) {
             throw $this
-                ->createNotFoundException("Aucune catégorie sélectionnée, veuillez choisir une catégorie");
+                ->createNotFoundException('Aucune catégorie sélectionnée, veuillez choisir une catégorie');
         }
         $categoryName = ucwords(trim(str_replace('-', ' ', $categoryName)));
 
@@ -102,6 +113,82 @@ class WildController extends AbstractController
         return $this->render('wild/category.html.twig', [
             'category' => $categoryName,
             'programs' => $program
+        ]);
+    }
+
+    /**
+     * @Route("wild/program/{id}", name="show_program")
+     * @param ProgramRepository $repo
+     * @param $id
+     * @return Response
+     */
+    public function showByProgram(ProgramRepository $repo, $id)
+    {
+        $program = $repo->find($id);
+
+        $repo = $this->getDoctrine()->getRepository(Season::class);
+        $seasons = $repo->findAll();
+
+
+        return $this->render('wild/program.html.twig', [
+            'program' => $program,
+            'seasons' => $seasons
+        ]);
+    }
+
+    /**
+     * @Route("wild/season/{id}", name="show_season")
+     * @param int $id
+     * @return Response
+     */
+    public function showBySeason(int $id){
+
+        //$seasonId = $season->getProgram();
+        $season = $this->getDoctrine()
+            ->getRepository(Season::class)
+            ->find($id);
+
+
+        $episodes = $this->getDoctrine()
+            ->getRepository(Episode::class)
+            ->findAll();
+
+
+        return $this->render('wild/season.html.twig', [
+            'season' => $season,
+            'episodes' =>$episodes
+        ]);
+
+    }
+
+    /**
+     * @Route("wild/episode/{id}", name= "show_episode")
+     * @param Episode $episode
+     * @return Response
+     */
+    public function showByEpisode(Episode $episode)
+    {
+        $season = $episode->getSeason();
+        $program = $season->getProgram();
+
+        return $this->render('wild/episode.html.twig',[
+            'episode' => $episode,
+            'season' => $season,
+            'program' => $program
+        ]);
+    }
+    /**
+     * @Route("actor/{slug}", name="show_actor")
+     * @param Actor $actor
+     * @return Response
+     */
+    public function showByActor(Actor $actor)
+    {
+        $programs=$actor->getPrograms();
+
+        return $this->render('actor/index.html.twig', [
+            'actor' => $actor,
+            'programs' => $programs
         ]);
     }
 }

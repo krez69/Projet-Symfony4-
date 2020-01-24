@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Program{% endblock %}
+
+{% block body %}
+    <h1>Program</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ program.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ program.title }}</td>
+        </tr>
+        <tr>
+            <th>Summary</th>
+            <td>{{ program.summary }}</td>
+        </tr>
+        <tr>
+            <th>Poster</th>
+            <td><img src="{{ program.poster }}" alt="photo"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <strong>Acteur :</strong>
+    <ul>
+        {% for actor in program.actors %}
+            <li><a href="{{ path('show_actor', {'slug' : actor.slug}) }} " style="color: lightblue">{{ actor.name }}</a>
+            </li>
+        {% else %}
+            <li>Aucun acteur pour cette série</li>
+        {% endfor %}
+    </ul>
+
+    {{ include('program/_delete_form.html.twig') }}
+    <div class="container col-4">
+        <a class="btn btn-outline-primary mt-2" href="{{ path('program_edit', {'slug': program.slug}) }}" style="color: steelblue">Modifier</a><br>
+    </div>
+    <a href="{{ path('program_index') }}" style="color: steelblue">Retour à la liste</a>
+
+
+{% endblock %}

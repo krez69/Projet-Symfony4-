@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category series{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        <button class="btn bg-primary mt-4">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

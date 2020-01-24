@@ -4,7 +4,7 @@
 
 
 {% block body %}
-    <h1 class="mt-3 mb-4">Toutes les séries de la table program : </h1>
+    <h1 class="mt-3 mb-4">Toutes les séries :  </h1>
     {% for program in programs %}
         <div>
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
@@ -13,6 +13,7 @@
     {% else %}
         Aucune série trouvée.
     {% endfor %}
+
     <a href="{{ path('app_index') }} ">Retour à l'acceuil</a><br>
     <a href="{{ path('show', { 'slug': "walking-dead" }) }}">
         Testing show() method from WildController with a real program s slug.

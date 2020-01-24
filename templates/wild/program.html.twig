@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All programs{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-3 mb-4">Les programmes:</h1>
+        <h2>{{ program.id }} - {{ program.title }}</h2>
+    {% for season in seasons %}
+        <div class="container">
+            <h2><a href="{{ path('show_season', { 'id': season.id })}}" style="color: black"> Saison {{ season.year }}</a></h2>
+        </div>
+    {% endfor %}
+    </div>
+    <a href="{{ path('app_index') }} " style="color: black">Retour à l'acceuil</a><br>
+    <a href="{{ path('show', { 'slug': "walking-dead" }) }}" style="color: black">
+        Testing show() method from WildController with a real program s slug.
+    </a>
+    <br>
+    <a href="{{ path('wild_index') }}" style="color: black">
+        Testing index() method from WildController to view all programs.
+    </a>
+
+{% endblock %}

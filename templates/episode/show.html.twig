@@ -3,32 +3,70 @@
 {% block title %}Episode{% endblock %}
 
 {% block body %}
-    <h1>Episode</h1>
+    <h1 class="text-center mt-5">Episode</h1>
+    <div class="container mt-3">
+        <table class="table-bordered mb-4" style="background: white">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ episode.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ episode.title }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ episode.number }}</td>
+            </tr>
+            <tr>
+                <th>Synopsis</th>
+                <td>{{ episode.synopsis }}</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ episode.id }}</td>
-        </tr>
-        <tr>
-            <th>Title</th>
-            <td>{{ episode.title }}</td>
-        </tr>
-        <tr>
-            <th>Number</th>
-            <td>{{ episode.number }}</td>
-        </tr>
-        <tr>
-            <th>Synopsis</th>
-            <td>{{ episode.synopsis }}</td>
-        </tr>
-        </tbody>
-    </table>
+        <a class="btn btn-primary offset-5" href="{{ path('episode_edit', {'slug': episode.slug}) }}">Modifier</a>
+        {{ include('episode/_delete_form.html.twig') }}
 
-    <a href="{{ path('episode_index') }}">back to list</a><br>
+        <h1>{{ episode.comments | length }} Commentaire(s)</h1>
+        <section id="commentaires">
+                    <table class="table table-fixed" style="background: white">
+                        <thead>
+                        <tr>
+                            <th class="col-3">Author</th>
+                            <th class="col-3">Episode</th>
+                            <th class="col-3">Commentaire</th>
+                            <th class="col-3">Note sur 10</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% for comment in episode.comments | reverse %}
+                            <td class="col-3">{{ comment.author }}</td>
+                            <td class="col-3">{{ comment.episode }}</td>
+                            <td class="col-3">{{ comment.comment }}</td>
+                            <td class="col-3">{{ comment.rate }}</td>
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+                    </table>
 
-    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
+        </section>
+        {% if app.user %}
+        <h1 class="mt-5">Ajouter un commentaire</h1>
 
-    {{ include('episode/_delete_form.html.twig') }}
+        {{ form_start(commentForm) }}
+        {{ form_row(commentForm.author) }}
+        {{ form_row(commentForm.episode, {'id':episode.id}) }}
+        {{ form_row(commentForm.comment) }}
+        {{ form_row(commentForm.rate, {'attr': {'placeholder': 'Note sur 10'}}) }}
+
+        <button type="submit" class="btn btn-success offset-md-5">Commenter</button><br>
+        {{ form_end(commentForm) }}
+        {% endif %}
+        <a class="btn btn-secondary btn-sm mt-3" href="{{ path('episode_index') }}">Retour à la liste</a><br>
+
+    </div>
+
 {% endblock %}

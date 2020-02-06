@@ -37,9 +37,10 @@
     </ul>
 
     {{ include('program/_delete_form.html.twig') }}
-    <div class="container col-4">
+    <div class="offset-4 col-4">
         <a class="btn btn-outline-primary mt-2" href="{{ path('program_edit', {'slug': program.slug}) }}" style="color: steelblue">Modifier</a><br>
     </div>
+    <a href="{{ path('episode_index') }}" style="color: steelblue">Voir les épisodes</a><br>
     <a href="{{ path('program_index') }}" style="color: steelblue">Retour à la liste</a>
 
 

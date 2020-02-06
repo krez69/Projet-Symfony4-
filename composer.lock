@@ -3705,16 +3705,16 @@
         },
         {
             "name": "symfony/mailer",
-            "version": "v4.3.9",
+            "version": "v4.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "a2e19255ce8de3a9c4e5228fde33ca9390af787c"
+                "reference": "9f1067430479527a21d9dc8461d97f4fbd1907de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/a2e19255ce8de3a9c4e5228fde33ca9390af787c",
-                "reference": "a2e19255ce8de3a9c4e5228fde33ca9390af787c",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/9f1067430479527a21d9dc8461d97f4fbd1907de",
+                "reference": "9f1067430479527a21d9dc8461d97f4fbd1907de",
                 "shasum": ""
             },
             "require": {
@@ -3763,7 +3763,7 @@
             ],
             "description": "Symfony Mailer Component",
             "homepage": "https://symfony.com",
-            "time": "2019-10-30T12:58:49+00:00"
+            "time": "2020-01-01T11:51:43+00:00"
         },
         {
             "name": "symfony/mime",
